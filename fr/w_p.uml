@@ -3,7 +3,7 @@ uml-processing
 autonumber 0 10
 
 participant CREATED as "Nouveau"
-participant VALIDATED as "PLIZE Valid&eacute;"
+participant VALIDATED as "Validé"
 participant FINISHED as "Publié"
 collections A_REPLACED as "Versionné"
 collections A_CANCELLED as "Abandonné"
