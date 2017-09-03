@@ -3,20 +3,21 @@ uml-processing
 autonumber 0 10
 
 participant CREATED as "Nouveau"
-participant VALIDATED as "Validé"
-participant FINISHED as "Publié"
-collections A_REPLACED as "Versionné"
-collections A_CANCELLED as "Abandonné"
-collections A_FINAL as "Terminé"
 
 [-> CREATED : Nouvelle fiche
 CREATED ->> CREATED : Modifier - Enregistrer
+
+create participant VALIDATED as "Validé"
 CREATED -> VALIDATED : Valider
 note right: Soumet pour publication
 VALIDATED -->> CREATED : Rejeter
+
+create participant FINISHED as "Publié"
 VALIDATED ->o FINISHED : Publier
 
 CREATED ->>o FINISHED : Publier directement
+
+collections A_REPLACED as "Versionné"
 
 group Création d'une nouvelle version
 FINISHED o-> CREATED : Nouvelle version
@@ -25,26 +26,26 @@ VALIDATED ->o FINISHED : Publier
 autonumber stop
 autonumber resume 1
 CREATED ->>o FINISHED : Publier directement
-FINISHED -->>o A_REPLACED : Publier directement
-note right
-Archivage automatique
-de la version précédente
-end note
+FINISHED -->>o A_REPLACED : Archivage V-1
+note left: Archivage automatique \nde la version précédente \nsur publication
 end
 
 autonumber stop
 
 |||
 ... Copies de fiches...
-CREATED ->> CREATED : COPY
-VALIDATED ->> CREATED : COPY
-FINISHED ->> CREATED : COPY
+CREATED ->> CREATED : Copier
+VALIDATED ->> CREATED : Copier
+FINISHED ->> CREATED : Copier
 
 |||
+collections A_CANCELLED as "Abandonné"
+collections A_FINAL as "Terminé"
+
 ...Archivage de fiches...
-CREATED -->>o A_CANCELLED: DROP
-VALIDATED -->>o A_CANCELLED: DROP
-FINISHED -->>o A_FINAL : ARCHIVE
+CREATED -->>o A_CANCELLED: Abandonner
+VALIDATED -->>o A_CANCELLED: Abandonner
+FINISHED -->>o A_FINAL : Archiver
 
 |||
 rnote over CREATED, A_FINAL: Consulter et Imprimer sont toujours disponibles.
