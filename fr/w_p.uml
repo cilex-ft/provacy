@@ -1,0 +1,51 @@
+@startuml
+autonumber 0 10
+
+participant CREATED as "Nouveau"
+participant VALIDATED as "PLIZE Valid&eacute;"
+participant FINISHED as "Publié"
+collections A_REPLACED as "Versionné"
+collections A_CANCELLED as "Abandonné"
+collections A_FINAL as "Terminé"
+
+[-> CREATED : Nouvelle fiche
+CREATED ->> CREATED : Modifier - Enregistrer
+CREATED -> VALIDATED : Valider
+note right: Soumet pour publication
+VALIDATED -->> CREATED : Rejeter
+VALIDATED ->o FINISHED : Publier
+
+CREATED ->>o FINISHED : Publier directement
+
+group Création d'une nouvelle version
+FINISHED o-> CREATED : Nouvelle version
+CREATED -> VALIDATED : Valider
+VALIDATED ->o FINISHED : Publier
+autonumber stop
+autonumber resume 1
+CREATED ->>o FINISHED : Publier directement
+FINISHED -->>o A_REPLACED : Publier directement
+note right
+Archivage automatique
+de la version précédente
+end note
+end
+
+autonumber stop
+
+|||
+... Copies de fiches...
+CREATED ->> CREATED : COPY
+VALIDATED ->> CREATED : COPY
+FINISHED ->> CREATED : COPY
+
+|||
+...Archivage de fiches...
+CREATED -->>o A_CANCELLED: DROP
+VALIDATED -->>o A_CANCELLED: DROP
+FINISHED -->>o A_FINAL : ARCHIVE
+
+|||
+rnote over CREATED, A_FINAL: Consulter et Imprimer sont toujours disponibles.
+|||
+@enduml
