@@ -1,3 +1,4 @@
+uml-processing
 @startuml
 autonumber 0 10
 
@@ -49,3 +50,4 @@ FINISHED -->>o A_FINAL : ARCHIVE
 rnote over CREATED, A_FINAL: Consulter et Imprimer sont toujours disponibles.
 |||
 @enduml
+uml-processing
