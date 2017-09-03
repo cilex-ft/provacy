@@ -4,7 +4,7 @@ autonumber 0 10
 
 participant CREATED as "Nouveau"
 
-[-> CREATED : Nouvelle fiche
+[o-> CREATED : Nouvelle fiche
 CREATED ->> CREATED : Modifier - Enregistrer
 
 create participant VALIDATED as "Validé"
