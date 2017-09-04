@@ -1,0 +1,32 @@
+uml-processing-validate
+@startuml
+autonumber 0 10
+hide footbox
+
+skinparam backgroundColor #EEEBDC
+
+Title \n**Provacy - Workflow Traitement - Demander la publication**\n\n
+
+
+participant CREATED as "Nouveau"
+
+[o-> CREATED : Nouvelle fiche
+CREATED ->> CREATED : Modifier - Enregistrer
+
+
+create participant VALIDATED as "Validé"
+
+CREATED -> VALIDATED : Demander la publication
+note right: (validation par les fonctionnels)
+
+|||
+
+create participant FINISHED as "Publié"
+VALIDATED ->o FINISHED : Publier
+note left: le DPO peut accepter\n la demande et publier\n la fiche au Registre
+VALIDATED -->> CREATED : Reclasser en brouillon
+note left: le DPO peut également rejeter\n la demande (fiche incomplète...)
+
+|||
+@enduml
+uml-processing-validate
