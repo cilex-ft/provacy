@@ -13,7 +13,7 @@ participant CREATED as "Nouveau"
 CREATED ->> CREATED : Modifier - Enregistrer
 
 
-create participant VALIDATED as "Validé"
+create participant VALIDATED as "A publier"
 
 CREATED -> VALIDATED : Demander la publication
 note right: (validation par les fonctionnels)
