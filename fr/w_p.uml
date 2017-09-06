@@ -27,7 +27,7 @@ collections A_REPLACED as "Versionné"
 
 group Création d'une nouvelle version
   FINISHED o-> CREATED : Nouvelle version
-  CREATED -> VALIDATED : Valider
+  CREATED -> VALIDATED : Demander la publication
   VALIDATED ->o FINISHED : Publier
   autonumber stop
   autonumber resume 1
